@@ -1,0 +1,23 @@
+Live Domain http://catsandsherpherd.moodtechsystems.co.za/
+
+Please Note that This is built with Node.js and Express.js
+
+To install locally:
+
+> Go to https://nodejs.org/en/download/ find relevant installer file for the OS you are using and 	download and install. A detailed installation guide can be found here https://docs.npmjs.com/getting-started/what-is-npm 
+
+> Then using Git, Clone https://github.com/joashivanmoodley/roboto_simulation.git this repo.
+ie: "git clone https://github.com/joashivanmoodley/roboto_simulation.git"
+> once cloned go into the directory 
+>> then run:
+ "npm install body-parser"
+ "npm install express"
+ "npm install ejs"
+ "node server.js"
+
+ App is configured to on http://localhost:3000
+
+A value for X, Y And Direction is required before the form will post.
+App consists of two files:
+> server.js - This does all the heavy lifting and is actually where the api is built.
+>index.html - this handles all the inputs and api calls. 
