@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>Roboto Toy Simulation </title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    var x,y,direction;
+    $("#id_submit_place").click(function(){
+        x = $("#id_x").val();
+        y = $("#id_y").val();
+        directtion = $("#id_directtion").val();
+
+        if (x!='' && y!='' && directtion !=''){
+        $.post("/api/place/"+x+"/"+y+"/"+directtion,{},function(data){       
+            if(data==='done')          
+            {
+                $('#id_left').show();
+                $('#id_right').show();
+                $('#id_move').show();
+                $('#id_report').show();
+
+            }
+        });
+    }
+    });
+    
+    $("#id_report").click(function(){
+
+        $.post("/api/report",{},function(data){       
+            $("#id_results").text("Results :" + data);
+        });
+    });
+
+    $("#id_left").click(function(){
+
+        $.post("/api/left",{},function(data){       
+            $("#id_results").text(data);
+        });
+    });
+    
+    $("#id_move").click(function(){
+
+        $.post("/api/move",{},function(data){
+            $("#id_results").text(data);
+        });
+    });
+    
+    $("#id_right").click(function(){
+
+        $.post("/api/right",{},function(data){       
+            $("#id_results").text(data);
+        });
+    });
+
+});
+</script>
+<style type="text/css">
+	input, button,span {
+    border: 3px solid white; 
+    -webkit-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    -moz-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    padding: 10px;
+    background: rgba(255,255,255,0.5);
+    margin: 0 0 10px 0;
+}
+</style>
+</head>
+<body>
+<h1> Roboto Toy Simulation</h1>
+
+<input type="text" size="40" placeholder="Type x position" id="id_x"><br />
+<input type="text" size="40" placeholder="Type y position" id="id_y"><br />
+<input type="text" size="40" placeholder="Directtion" id="id_directtion"><br />
+<input type="button" value="Place" id="id_submit_place">
+
+<button id="id_left" style="display:none">Position Left</button>
+<button id="id_right" style="display:none">Position Right</button>
+<button id="id_move" style="display:none">Move</button>
+<button id="id_report" style="display:none">Report</button>
+<br/>
+
+<span id="id_results"></span>
+
+</body>
+</html>
